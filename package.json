@@ -1,13 +1,7 @@
 {
-  "name": "api-tik-downloader",
+  "name": "api-all-in-one-downloader",
   "version": "1.0.0",
   "type": "module",
-  "description": "TikTok API Wrapper",
-  "main": "api/tiktok.js",
-  "scripts": {
-    "dev": "echo 'No dev server needed'"
-  },
-  "keywords": ["tiktok", "api", "wrapper"],
-  "author": "Vexolirity",
-  "license": "MIT"
+  "description": "All-in-One Social Media Downloader API Wrapper",
+  "main": "api/downloader.js"
 }
