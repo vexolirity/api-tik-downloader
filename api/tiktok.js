@@ -1,49 +1,54 @@
-// api/tiktok.js
+// API Wrapper TikTok - Bisa dishare ke user
 export default async function handler(req, res) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({
+      success: false,
+      message: 'Method tidak diizinkan'
+    });
+  }
+
   const { url, apikey } = req.query;
 
-  // API key buatan kamu untuk user
-  const USER_API_KEY = "a7k3m9x2p4";
-
-  // API key asli provider (disimpan di Vercel Environment Variables)
-  const PROVIDER_API_KEY = process.env.NEOXR_API_KEY;
-
-  // cek apikey user
+  // Validasi API key user
+  const validKeys = (process.env.USER_API_KEYS || '').split(',');
+  
   if (!apikey) {
     return res.status(401).json({
-      status: false,
-      message: "apikey wajib diisi"
+      success: false,
+      message: 'API key wajib diisi. Hubungi owner untuk mendapatkannya.'
     });
   }
 
-  if (apikey !== USER_API_KEY) {
+  if (!validKeys.includes(apikey)) {
     return res.status(403).json({
-      status: false,
-      message: "apikey tidak valid"
+      success: false,
+      message: 'API key tidak valid. Hubungi owner untuk key baru.'
     });
   }
 
-  // cek url
-  if (!url) {
+  if (!url || !url.includes('tiktok.com')) {
     return res.status(400).json({
-      status: false,
-      message: "url wajib diisi"
+      success: false,
+      message: 'URL TikTok tidak valid'
     });
   }
 
   try {
-    const apiUrl = `https://api.neoxr.eu/api/aio?url=${encodeURIComponent(url)}&apikey=${PROVIDER_API_KEY}`;
-
-    const response = await fetch(apiUrl);
+    // API key asli TERSEMBUNYI di sini
+    const providerURL = `https://api.neoxr.eu/api/aio?url=${encodeURIComponent(url)}&apikey=${process.env.NEOXR_API_KEY}`;
+    
+    const response = await fetch(providerURL);
     const data = await response.json();
 
-    return res.status(200).json(data);
+    return res.status(200).json({
+      success: true,
+      data: data
+    });
 
   } catch (error) {
     return res.status(500).json({
-      status: false,
-      message: "server error",
-      error: error.message
+      success: false,
+      message: 'Server error'
     });
   }
 }
