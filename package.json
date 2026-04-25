@@ -1,0 +1,12 @@
+{
+  "name": "tiktok-api-wrapper",
+  "version": "1.0.0",
+  "description": "TikTok API Wrapper dengan Vercel",
+  "main": "api/tiktok.js",
+  "scripts": {
+    "dev": "echo 'Tidak ada dev server khusus'"
+  },
+  "keywords": ["tiktok", "api", "wrapper", "vercel"],
+  "author": "yamaxiar",
+  "license": "MIT"
+}
