@@ -1,12 +1,13 @@
 {
-  "name": "tiktok-api-wrapper",
+  "name": "api-tik-downloader",
   "version": "1.0.0",
-  "description": "TikTok API Wrapper dengan Vercel",
+  "type": "module",
+  "description": "TikTok API Wrapper",
   "main": "api/tiktok.js",
   "scripts": {
-    "dev": "echo 'Tidak ada dev server khusus'"
+    "dev": "echo 'No dev server needed'"
   },
-  "keywords": ["tiktok", "api", "wrapper", "vercel"],
-  "author": "yamaxiar",
+  "keywords": ["tiktok", "api", "wrapper"],
+  "author": "Vexolirity",
   "license": "MIT"
 }
